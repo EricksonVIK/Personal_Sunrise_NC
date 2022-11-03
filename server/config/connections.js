@@ -6,14 +6,12 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        // useCreateIndex: true,
-        // useFindAndModify: false
       
     },
     console.log(" -----🌐Connected to MongoDB!🌐-----")
 ),
 
-    // Use this to log mongo queries being executed!
+// Use this to log mongo queries being executed!
 mongoose.set("debug", true);
 
 module.exports = mongoose.connection;
