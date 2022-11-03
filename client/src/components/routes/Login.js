@@ -12,7 +12,7 @@ const Login = () => {
 						id="inputEmail"
 						placeholder="example@email.com"
 						value=""
-						required="true"
+						required={true}
 					></input>
 				</div>
 				<div id="loginPassword">
@@ -22,7 +22,7 @@ const Login = () => {
 						name="password"
 						id="inputPassword"
 						value=""
-						required="true"
+						required={true}
 					></input>
 				</div>
 				<div id="loginSubmit">
