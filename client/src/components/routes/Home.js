@@ -1,4 +1,5 @@
 import React from 'react'
+import PhotoSlideshow from '../PhotoSlideshow'
 
 const Home = () => {
 	return (
@@ -6,7 +7,7 @@ const Home = () => {
 			<section id="photoGallery">
 				<h2 id="photoGalleryTitle">Photo Gallery</h2>
 				<div id="photos">
-					{/* Either photo list with buttons or photo component that changes occasionally */}
+					<PhotoSlideshow />
 				</div>
 			</section>
 			<section id="description">

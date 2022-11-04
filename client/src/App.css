@@ -18,3 +18,20 @@
   color: white;
 }
 
+.slideshow {
+	max-height: 640px;
+	margin: 0 auto;
+	overflow: hidden;
+	max-width: 360px;
+}
+
+.slider {
+	white-space: nowrap;
+	transition: ease 1000ms
+}
+
+.slider img {
+	display: inline-block;
+	height: 640px;
+	width: 100%;
+}
