@@ -11,6 +11,13 @@ type User {
     email: String
     loginType: String
 }
+type Event{
+    _id: ID
+    start: String
+    end: String
+    title: String
+    createdAt: String
+}
 type Auth {
     token: ID!
     user: User
@@ -18,11 +25,14 @@ type Auth {
 type Query {
     users: [User]
     user(username: String!): User
+    events: [Event]
+    event(_id: ID!): Event
   }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addEvent(start: String!, end: String!, title: String!, createdAt: String): Event
 }
 `;
 
