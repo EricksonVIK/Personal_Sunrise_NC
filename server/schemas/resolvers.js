@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const User = require("../models/User")
 const Event = require("../models/Event")
+const Reservation = require("../models/Reservation")
 
 const { signToken } = require('../utils/auth');
 
@@ -22,6 +23,10 @@ const resolvers = {
         // find one event
         event: async (parent, { _id}) => {
             return Event.findOne({_id})
+        },
+        // find all requests
+        requests: async () => {
+            return Reservation.find()
         }
     },
     Mutation: {
@@ -49,6 +54,19 @@ const resolvers = {
         },
         addEvent: async (parent, args) => {
             return  Event.create(args);
+        },
+        addReservation: async (parent, args, context) => {
+            if (context.user) {
+                const request = await Reservation.create({ ...args, username: context.user.username });
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { request: request.id } },
+                    { new: true }
+                );
+                return User
+            }
+            throw new AuthenticationError("You need to log in first!");
         }
     }
 };

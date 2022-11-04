@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const ReservationSchema = require("./Reservation")
 
 const userSchema = new Schema({
   username: {
@@ -23,6 +24,12 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  requests: [ 
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Reservation'
+    }
+  ]
 });
 
 // set up pre-save middleware to create password

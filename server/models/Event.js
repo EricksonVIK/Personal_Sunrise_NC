@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require("mongoose");
-
+const dateFormat = require('../utils/dateFormat')
 
 const EventSchema = new Schema(
     {
@@ -16,7 +16,7 @@ const EventSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default:Date.now,
+            default:timestamp => dateFormat(timestamp),
         }
     },
 );

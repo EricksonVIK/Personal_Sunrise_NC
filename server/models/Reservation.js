@@ -1,6 +1,7 @@
 const { Schema, model, Types } = require("mongoose")
+const dateFormat = require('../utils/dateFormat')
 
-const RequestSchemna = new Schema(
+const ReservationSchemna = new Schema(
     {
         start: {
             type: Date,
@@ -8,7 +9,7 @@ const RequestSchemna = new Schema(
         end: {
             type: Date,
         },
-        name: {
+        username: {
             type: String
         },
         email: {
@@ -16,12 +17,15 @@ const RequestSchemna = new Schema(
             required: true,
             unique: true,
             match: [/.+@.+\..+/, "Must match an email address!"],
-          },
+        },
+        createdAt: {
+            type: Date,
+            default:timestamp => dateFormat(timestamp),
+        }
     }
 )
 
-const Request = model("Request", RequestSchemna)
+const Reservation = model("Reservation", ReservationSchemna)
 
-module.exorts = Request;
+module.exports = Reservation;
 
-// can we pull name and email from username? with user array

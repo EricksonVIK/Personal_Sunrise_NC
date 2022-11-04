@@ -10,12 +10,20 @@ type User {
     username: String
     email: String
     loginType: String
+    requests: String
 }
 type Event{
     _id: ID
     start: String
     end: String
     title: String
+    createdAt: String
+}
+type Reservation{
+    _id: ID
+    start: String
+    end: String
+    username: String
     createdAt: String
 }
 type Auth {
@@ -27,12 +35,15 @@ type Query {
     user(username: String!): User
     events: [Event]
     event(_id: ID!): Event
+    requests: [Reservation]
+    request (_id: ID) : User 
   }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addEvent(start: String!, end: String!, title: String!, createdAt: String): Event
+    addReservation(username: String!, start:String, end:String): User
 }
 `;
 
