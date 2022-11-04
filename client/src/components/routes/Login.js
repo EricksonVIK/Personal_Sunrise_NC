@@ -5,10 +5,14 @@ const Login = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const handleEmailChange = (event) => {
-		setEmail(event.target.value)
+		let val = event.target.value
+		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
+		setEmail(val)
 	}
 	const handlePasswordChange = (event) => {
-		setPassword(event.target.value)
+		let val = event.target.value
+		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
+		setPassword(val)
 	}
 
 	return (
