@@ -44,6 +44,8 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addEvent(start: String!, end: String!, title: String!, createdAt: String): Event
     addReservation(username: String!, start:String, end:String): User
+    deleteEvent(title:String!): Event
+    updateEvent(title:String!): Event
 }
 `;
 
