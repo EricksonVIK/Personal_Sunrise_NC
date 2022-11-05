@@ -11,17 +11,16 @@ const Home = () => {
         </div>
       </section>
       <section id="description">
-        <h2>Description</h2>
+        <h2>Oceanfront townhome walking distance from boardwalk!</h2>
         <p id="descriptionText">
-          Oceanfront townhome walking distance from boardwalk! Take a quick trip
-          to Carolina beach to enjoy this ocean front home. Plenty of rooms and
-          beds to accommodate multiple families. 5 bedrooms, 3.5 baths. Walk out
-          on your newly renovated boardwalk to play in the sand. Clean off in
-          the outdoor shower. Stroll downtown for shops/restaurants and around
-          the lake where you can paddle boat. Take a short drive to the NC
-          Aquarium. This home has parking on premises, 4 smart TVs, full sized
-          washer/dryer, and an elevator. Come back to grill outside and enjoy a
-          cocktail on one of the 3 decks.
+          “Personal Sunrise” is the perfect getaway from the business of life.
+          Equipped with 3 smart tv’s, full sized washer/dryer, elevator and
+          stocked kitchen, this 5BR 3.5 BA townhome is sure to set up for a
+          wonderful vacation. Enjoy private boardwalk to the beach where you and
+          your loved ones can enjoy playing in the ocean and clean off in the
+          outdoor shower. Walking distance to shops, restaurants and lake. Quick
+          drive to NC Aquarium and Wilmington. Come enjoy all Carolina Beach has
+          to offer!
         </p>
       </section>
       <section id="reviews">
