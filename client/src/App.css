@@ -18,6 +18,8 @@
   color: white;
 }
 
+/* Slideshow on home page */
+
 .slideshow {
 	max-height: 640px;
 	margin: 0 auto;
@@ -34,4 +36,51 @@
 	display: inline-block;
 	height: 640px;
 	width: 100%;
+}
+
+/* Form on login page */
+
+#loginForm {
+	max-width: 80vw;
+	margin: 10vw 15vh;
+	text-align: center;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+#mainFieldset {
+	border: none;
+}
+
+legend {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	font-size: 2.2em;
+	font-weight: 900;
+	padding-bottom: 30px;
+}
+
+#loginForm label {
+	font-size: 2em;
+	font-weight: 900;
+}
+
+#loginEmail div, #loginPassword div {
+	width: 80%;
+	margin: 10px auto;
+}
+
+#loginEmail div input, #loginPassword div input {
+	text-align: center;
+}
+
+#loginEmail label, #loginPassword label {
+	display: block;
+}
+
+#loginSubmit button {
+	width: 50%;
+	height: 5vh;
+	margin-bottom: 10px;
 }
