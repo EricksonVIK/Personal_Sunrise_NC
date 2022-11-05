@@ -65,7 +65,7 @@ const resolvers = {
         },
         // update event - owner only (can delete and add work?)
         updateEvent: async (parent, { title }) => {
-            return Event.findOneAndUpdate({title})
+            return Event.findOneAndUpdate({title, start, end})
         },
         // add reservation
         addReservation: async (parent, args, context) => {
