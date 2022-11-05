@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+// map over assets/images for array
 const imageArr = [
 	'http://via.placeholder.com/360x640/0000FF',
 	'http://via.placeholder.com/360x640/FF0000',
