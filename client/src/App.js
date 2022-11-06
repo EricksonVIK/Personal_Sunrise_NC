@@ -1,3 +1,5 @@
+es (25 sloc)  759 Bytes
+
 import './App.css'
 import React from 'react'
 import Header from './components/Header';
@@ -25,3 +27,5 @@ function App() {
 }
 
 export default App
+Footer
+© 2022 GitHub, Inc.
