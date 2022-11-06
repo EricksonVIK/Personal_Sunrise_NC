@@ -29,12 +29,12 @@ const useStyles = makeStyles(() => ({
 
 const headersData = [
   {
-    label: "Listings",
-    href: "/listings",
+    label: "Calander",
+    href: "/calander",
   },
   {
-    label: "Sign Up",
-    href: "/signup",
+    label: "Contact",
+    href: "/contact",
   },
   {
     label: "My Account",
