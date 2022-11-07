@@ -1,4 +1,4 @@
-es (25 sloc)  759 Bytes
+// es (25 sloc)  759 Bytes
 
 import './App.css'
 import React from 'react'
@@ -27,5 +27,5 @@ function App() {
 }
 
 export default App
-Footer
-© 2022 GitHub, Inc.
+// Footer
+// © 2022 GitHub, Inc.

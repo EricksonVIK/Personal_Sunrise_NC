@@ -1,5 +1,5 @@
 {
-  "name": "Personal_Sunrise_server",
+  "name": "server",
   "version": "1.0.0",
   "description": "Rental property back end",
   "main": "server.js",
@@ -21,6 +21,7 @@
     "moment": "^2.29.4",
     "mongo-seeding": "^3.7.2",
     "mongoose": "^6.7.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "graphql":"15.5.0"
   }
 }
