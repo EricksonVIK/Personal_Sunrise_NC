@@ -10,6 +10,7 @@
     "@fullcalendar/interaction": "^5.11.3",
     "@fullcalendar/react": "^5.11.2",
     "@mui/material": "^5.10.12",
+    "@mui/styles": "^5.10.10",
     "bootstrap": "^5.2.2",
     "graphql": "15.5.0",
     "jwt-decode": "3.1.2",
