@@ -27,6 +27,7 @@ class AuthService {
 	//login and save token
 	login(idToken) {
 		localStorage.setItem('id_token', idToken)
+		window.location.assign('/')
 	}
 	//logout and redirect to home
 	logout() {

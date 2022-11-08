@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import Auth from '../../utlis/auth'
 
 const useStyles = makeStyles(() => ({
 	header: {
@@ -27,6 +28,11 @@ const useStyles = makeStyles(() => ({
 	},
 }))
 
+//logout function
+const logout = () => {
+	Auth.logout()
+}
+
 const loggedInHeaders = [
 	{
 		label: 'Home',
@@ -40,13 +46,9 @@ const loggedInHeaders = [
 		label: 'Contact',
 		href: '/contact',
 	},
-	{
-		label: 'Log Out',
-		href: '/logout',
-	},
 ]
 
-const loggerOutHeaders = [
+const loggedOutHeaders = [
 	{
 		label: 'Home',
 		href: '/',
@@ -69,7 +71,7 @@ const loggerOutHeaders = [
 	},
 ]
 
-export default function Header(props) {
+export default function Header() {
 	const { header, logo, menuButton } = useStyles()
 	const displayDesktop = () => {
 		return (
@@ -86,24 +88,39 @@ export default function Header(props) {
 		</Typography>
 	)
 
-	const headers = props.loggedIn ? loggedInHeaders : loggerOutHeaders
-
 	const getMenuButtons = () => {
-		return headers.map(({ label, href }) => {
-			return (
-				<Button
-					{...{
-						key: label,
-						color: 'inherit',
-						to: href,
-						component: RouterLink,
-						className: menuButton,
-					}}
-				>
-					{label}
+		return !Auth.loggedIn() ? (
+			loggedOutHeaders.map(({ label, href }) => {
+				return (
+					<Button
+						{...{
+							key: label,
+							color: 'inherit',
+							to: href,
+							component: RouterLink,
+							className: menuButton,
+						}}
+					>
+						{label}
+					</Button>
+				)
+			})
+		) : (
+			<>
+				<Button href="/" color="inherit">
+					Home
 				</Button>
-			)
-		})
+				<Button href="/calendar" color="inherit">
+					Calendar
+				</Button>
+				<Button href="/contact" color="inherit">
+					Contact
+				</Button>
+				<Button to="/" onClick={logout} color="inherit">
+					Log Out
+				</Button>
+			</>
+		)
 	}
 
 	return <AppBar className={header}>{displayDesktop()}</AppBar>
