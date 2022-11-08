@@ -13,6 +13,7 @@ router.get("/get-event", async (req, res) => {
     start: { $gte: moment(req.query.start).toDate() },
     end: { $lte: moment(req.query.end).toDate() },
   });
+  res.send(events);
 });
 
 module.exports = router;
