@@ -10,28 +10,19 @@ const SignUp = () => {
 	const [lastName, setLastName] = useState('')
 
 	const handleFirstNameChange = (event) => {
-		let val = event.target.value
-		setFirstName(val)
+		setFirstName(event.target.value)
 	}
 	const handleLastNameChange = (event) => {
-		let val = event.target.value
-		val === '' ? (event.target.error = 'true') : (event.target.error = 'false')
-		setLastName(val)
+		setLastName(event.target.value)
 	}
 	const handleEmailChange = (event) => {
-		let val = event.target.value
-		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
-		setEmail(val)
+		setEmail(event.target.value)
 	}
 	const handlePasswordChange = (event) => {
-		let val = event.target.value
-		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
-		setPassword(val)
+		setPassword(event.target.value)
 	}
 	const handlePasswordConfirmChange = (event) => {
-		let val = event.target.value
-		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
-		setPasswordConfirm(val)
+		setPasswordConfirm(event.target.value)
 	}
 
 	return (
