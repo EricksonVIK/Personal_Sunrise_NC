@@ -1,19 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import { useMutation } from '@apollo/client'
+import { ADD_USER } from '../../utlis/queries'
+import Auth from '../../utlis/auth'
 
 const SignUp = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [passwordConfirm, setPasswordConfirm] = useState('')
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
+	const [username, setUsername] = useState('')
+	const [valid, setValid] = useState(true)
 
-	const handleFirstNameChange = (event) => {
-		setFirstName(event.target.value)
+	const [addUser, { error }] = useMutation(ADD_USER)
+
+	// validation for password entry before submission
+	const validatePassword = (password, passwordConfirm) => {
+		if (password.length >= 1 && password === passwordConfirm) {
+			return setValid(false)
+		}
+		return setValid(true)
 	}
-	const handleLastNameChange = (event) => {
-		setLastName(event.target.value)
+
+	useEffect(() => {
+		validatePassword(password, passwordConfirm)
+	})
+
+	// set states for updating values
+	const handleUserameChange = (event) => {
+		setUsername(event.target.value)
 	}
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value)
@@ -25,36 +40,36 @@ const SignUp = () => {
 		setPasswordConfirm(event.target.value)
 	}
 
+	// handle form submission and authentication
+	const handleFormSubmit = async (event) => {
+		event.preventDefault()
+		try {
+			const { data } = await addUser({
+				variables: { email: email, password: password, username: username },
+			})
+			Auth.login(data.addUser.token)
+		} catch (err) {
+			console.error(err)
+		}
+	}
+
 	return (
 		<>
 			<form id="signupForm">
 				<fieldset id="mainFieldset">
 					<legend>Sign Up</legend>
-					<div id="signupFirstName">
-						<label htmlFor="firstName">First Name:</label>
+					<div id="signupUsername">
+						<label htmlFor="username">Username:</label>
 						<TextField
 							type="text"
-							id="firstName"
-							placeholder="First Name"
-							value={firstName}
+							id="username"
+							placeholder="Userame"
+							value={username}
 							required={true}
 							variant="outlined"
-							error={firstName.length <= 0}
-							helperText={firstName.length <= 0 ? 'Required' : null}
-							onChange={handleFirstNameChange}
-						></TextField>
-					</div>
-					<div id="signupLastName">
-						<label htmlFor="lastName">Last Name:</label>
-						<TextField
-							type="text"
-							id="lastName"
-							placeholder="Last Name"
-							value={lastName}
-							required={true}
-							variant="outlined"
-							onChange={handleLastNameChange}
-							error={lastName.length <= 0}
+							error={username.length <= 0}
+							helperText={username.length <= 0 ? 'Required' : null}
+							onChange={handleUserameChange}
 						></TextField>
 					</div>
 					<div id="signupEmail">
@@ -101,15 +116,17 @@ const SignUp = () => {
 						<Button
 							id="signup"
 							type="submit"
-							formAction="/#"
+							onClick={handleFormSubmit}
 							variant="contained"
 							color="primary"
+							disabled={valid}
 						>
 							Log In
 						</Button>
 					</div>
 				</fieldset>
 			</form>
+			{error && <div>Sign Up failed.</div>}
 		</>
 	)
 }

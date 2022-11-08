@@ -127,7 +127,7 @@ legend {
 	display: block;
 }
 
-#loginEmail div, #loginPassword div, #signupEmail div, #signupPassword div, #signupPasswordConfirm div, #signupFirstName div, #signupLastName div {
+#loginEmail div, #loginPassword div, #signupEmail div, #signupPassword div, #signupPasswordConfirm div, #signupUsername div {
 	width: 80%;
 	margin: 10px auto;
 }
