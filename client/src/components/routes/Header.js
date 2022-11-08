@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 	},
 }))
 
-const headersData = [
+const loggedInHeaders = [
 	{
 		label: 'Home',
 		href: '/',
@@ -41,15 +41,31 @@ const headersData = [
 		href: '/contact',
 	},
 	{
-		label: 'My Account',
-		href: '/account',
-	},
-	{
 		label: 'Log Out',
 		href: '/logout',
 	},
 ]
-export default function Header() {
+
+const loggerOutHeaders = [
+	{
+		label: 'Home',
+		href: '/',
+	},
+	{
+		label: 'Calendar',
+		href: '/calendar',
+	},
+	{
+		label: 'Contact',
+		href: '/contact',
+	},
+	{
+		label: 'Log In',
+		href: '/login',
+	},
+]
+
+export default function Header(props) {
 	const { header, logo, menuButton } = useStyles()
 	const displayDesktop = () => {
 		return (
@@ -66,8 +82,10 @@ export default function Header() {
 		</Typography>
 	)
 
+	const headers = props.loggedIn ? loggedInHeaders : loggerOutHeaders
+
 	const getMenuButtons = () => {
-		return headersData.map(({ label, href }) => {
+		return headers.map(({ label, href }) => {
 			return (
 				<Button
 					{...{
