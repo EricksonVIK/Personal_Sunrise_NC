@@ -13,6 +13,9 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
+	"resolutions": {
+		"react-error-overlay": "6.0.9"
+	},
   "eslintConfig": {
     "extends": [
       "react-app",

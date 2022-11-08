@@ -60,6 +60,10 @@ const loggerOutHeaders = [
 		href: '/contact',
 	},
 	{
+		label: 'Sign Up',
+		href: '/signup',
+	},
+	{
 		label: 'Log In',
 		href: '/login',
 	},

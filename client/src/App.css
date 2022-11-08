@@ -98,9 +98,9 @@ margin-top: 64px
 	background-color: gray;
 }
 
-/* Form on login page */
+/* Form on login and signup page */
 
-#loginForm {
+#loginForm, #signupForm {
 	max-width: 80vw;
 	margin: 10vw 15vh;
 	text-align: center;
@@ -121,12 +121,13 @@ legend {
 	padding-bottom: 30px;
 }
 
-#loginForm label {
+#loginForm label, #signupForm label {
 	font-size: 2em;
 	font-weight: 900;
+	display: block;
 }
 
-#loginEmail div, #loginPassword div {
+#loginEmail div, #loginPassword div, #signupEmail div, #signupPassword div, #signupPasswordConfirm div, #signupFirstName div, #signupLastName div {
 	width: 80%;
 	margin: 10px auto;
 }
@@ -135,12 +136,12 @@ legend {
 	text-align: center;
 }
 
-#loginEmail label, #loginPassword label {
-	display: block;
-}
-
-#loginSubmit button {
+#loginSubmit button, #signupSubmit button {
 	width: 50%;
 	height: 5vh;
 	margin-bottom: 10px;
+}
+
+iframe {
+	display: none;
 }
