@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import Auth from '../../utlis/auth'
 
 const useStyles = makeStyles(() => ({
 	header: {
@@ -27,7 +28,27 @@ const useStyles = makeStyles(() => ({
 	},
 }))
 
-const headersData = [
+//logout function
+const logout = () => {
+	Auth.logout()
+}
+
+const loggedInHeaders = [
+	{
+		label: 'Home',
+		href: '/',
+	},
+	{
+		label: 'Calendar',
+		href: '/calendar',
+	},
+	{
+		label: 'Contact',
+		href: '/contact',
+	},
+]
+
+const loggedOutHeaders = [
 	{
 		label: 'Home',
 		href: '/',
@@ -41,14 +62,15 @@ const headersData = [
 		href: '/contact',
 	},
 	{
-		label: 'My Account',
-		href: '/account',
+		label: 'Sign Up',
+		href: '/signup',
 	},
 	{
-		label: 'Log Out',
-		href: '/logout',
+		label: 'Log In',
+		href: '/login',
 	},
 ]
+
 export default function Header() {
 	const { header, logo, menuButton } = useStyles()
 	const displayDesktop = () => {
@@ -67,21 +89,38 @@ export default function Header() {
 	)
 
 	const getMenuButtons = () => {
-		return headersData.map(({ label, href }) => {
-			return (
-				<Button
-					{...{
-						key: label,
-						color: 'inherit',
-						to: href,
-						component: RouterLink,
-						className: menuButton,
-					}}
-				>
-					{label}
+		return !Auth.loggedIn() ? (
+			loggedOutHeaders.map(({ label, href }) => {
+				return (
+					<Button
+						{...{
+							key: label,
+							color: 'inherit',
+							to: href,
+							component: RouterLink,
+							className: menuButton,
+						}}
+					>
+						{label}
+					</Button>
+				)
+			})
+		) : (
+			<>
+				<Button href="/" color="inherit">
+					Home
 				</Button>
-			)
-		})
+				<Button href="/calendar" color="inherit">
+					Calendar
+				</Button>
+				<Button href="/contact" color="inherit">
+					Contact
+				</Button>
+				<Button to="/" onClick={logout} color="inherit">
+					Log Out
+				</Button>
+			</>
+		)
 	}
 
 	return <AppBar className={header}>{displayDesktop()}</AppBar>

@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-	"module": "true",
+  "module": "true",
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@emotion/react": "^11.10.5",
@@ -14,7 +14,7 @@
     "@mui/styles": "^5.10.10",
     "bootstrap": "^5.2.2",
     "graphql": "15.5.0",
-    "jwt-decode": "3.1.2",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",

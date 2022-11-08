@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button'
-import  TextField  from '@mui/material/TextField'
+import TextField from '@mui/material/TextField'
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER } from '../../utlis/queries'
+import Auth from '../../utlis/auth'
+
 const Login = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -13,6 +17,22 @@ const Login = () => {
 		let val = event.target.value
 		val === '' ? (event.target.error = 'false') : (event.target.error = 'true')
 		setPassword(val)
+	}
+
+	const [login, { error }] = useMutation(LOGIN_USER)
+
+	//login
+	const handleFormSubmit = async (e) => {
+		e.preventDefault()
+		try {
+			const { data } = await login({
+				variables: { email: email, password: password },
+			})
+
+			Auth.login(data.login.token)
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 	return (
@@ -30,7 +50,7 @@ const Login = () => {
 							value={email}
 							required={true}
 							variant="outlined"
-							error="true"
+							error={email.length < 1}
 							onChange={handleEmailChange}
 						></TextField>
 					</div>
@@ -43,7 +63,7 @@ const Login = () => {
 							value={password}
 							required={true}
 							variant="outlined"
-							error="true"
+							error={password.length < 1}
 							onChange={handlePasswordChange}
 						></TextField>
 					</div>
@@ -54,12 +74,14 @@ const Login = () => {
 							formAction="/#"
 							variant="contained"
 							color="primary"
+							onClick={handleFormSubmit}
 						>
 							Log In
 						</Button>
 					</div>
 				</fieldset>
 			</form>
+			{error && 'Error logging in.'}
 		</>
 	)
 }
