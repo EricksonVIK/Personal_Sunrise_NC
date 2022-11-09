@@ -8,7 +8,6 @@ import {
 	Schedule,
 	Login,
 	Home, ContactForm,
-	SignUp,
 } from './components/routes/index'
 import {
 	ApolloProvider,
