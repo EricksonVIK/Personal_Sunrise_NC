@@ -10,7 +10,7 @@ const typeDefs = gql`
 		username: String
 		email: String
 		loginType: String
-		requests: String
+		requests: [Reservation!]
 	}
 	type Event {
 		_id: ID
@@ -31,11 +31,11 @@ const typeDefs = gql`
 		user: User
 	}
 	type Query {
-		users: [User]
+		users: [User!]
 		user(username: String!): User
 		events: [Event]
 		event(_id: ID!): Event
-		requests: [Reservation]
+		requests: [Reservation!]
 		request(_id: ID): User
 	}
 
@@ -48,7 +48,12 @@ const typeDefs = gql`
 			title: String!
 			createdAt: String
 		): Event
-		addReservation(username: String!, start: String, end: String): User
+		addReservation(
+			username: String!
+			email: String!
+			start: String
+			end: String
+		): User
 		deleteEvent(title: String!): Event
 		updateEvent(title: String!): Event
 	}
