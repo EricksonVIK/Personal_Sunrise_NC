@@ -7,7 +7,7 @@ import {
 	Calendar,
 	Schedule,
 	Login,
-	Home,
+	Home, ContactForm,
 	SignUp,
 } from './components/routes/index'
 import {
@@ -39,19 +39,17 @@ const client = new ApolloClient({
 
 function App() {
 	return (
-		<ApolloProvider client={client}>
-			<Router>
-				<Header></Header>
-				<Routes>
-					<Route path="/calendar" element={<Calendar />}></Route>
-					<Route path="/schedule" element={<Schedule />}></Route>
-					<Route path="/login" element={<Login />}></Route>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="/signup" element={<SignUp />}></Route>
-				</Routes>
-				<Footer />
-			</Router>
-		</ApolloProvider>
+		<Router>
+			<Header></Header>
+			<Routes>
+				<Route path="/calendar" element={<Calendar />}></Route>
+				<Route path="/schedule" element={<Schedule />}></Route>
+				<Route path="/login" element={<Login />}></Route>
+				<Route path="/" element={<Home />}></Route>
+				<Route path="/contact" element={<ContactForm />}></Route>
+			</Routes>
+			<Footer />
+		</Router>
 	)
 }
 
