@@ -24,12 +24,14 @@ import boardwalk4 from './View from boardwalk.jpeg'
 import deckSunrise from './Deck Sunrise.jpg'
 
 const imageArray = [
+	sunrise,
 	firstFloorBunk,
 	firstFloorHall,
 	firstFloorHall2,
 	firstFloorBed,
 	firstFloorMaster,
 	firstFloorWasher,
+	boardwalk,
 	secondFloorCoffee,
 	secondFloorKitchen,
 	secondFloorKitchen2,
@@ -37,17 +39,15 @@ const imageArray = [
 	secondFloorKitchen4,
 	secondFloorLiving,
 	secondFloorLiving2,
+	deckSunrise,
 	thirdFloorHall,
 	thirdFloorMaster,
 	thirdFloorMaster2,
 	thirdFloorMasterBath,
-	sunrise,
 	beachMemory,
-	boardwalk,
 	boardwalk2,
 	boardwalk3,
 	boardwalk4,
-	deckSunrise,
 ]
 
 export default imageArray
