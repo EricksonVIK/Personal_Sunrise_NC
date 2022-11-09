@@ -39,3 +39,16 @@ export const ADD_USER = gql`
 		}
 	}
 `
+
+export const ADD_RESERVATION = gql`
+	mutation ($username: String!, $start: String, $end: String, $email: String!) {
+		addReservation(
+			username: $username
+			start: $start
+			end: $end
+			email: $email
+		) {
+			_id
+		}
+	}
+`

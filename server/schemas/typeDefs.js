@@ -48,7 +48,12 @@ const typeDefs = gql`
 			title: String!
 			createdAt: String
 		): Event
-		addReservation(username: String!, start: String, end: String): User
+		addReservation(
+			username: String!
+			email: String!
+			start: String
+			end: String
+		): User
 		deleteEvent(title: String!): Event
 		updateEvent(title: String!): Event
 	}
