@@ -27,14 +27,8 @@ const Calendar = () => {
 		return
 	})
 
-	// cb for when user selects dates
-	const addReservation = async (info) => {
-		setSelectInfo({
-			start: info.startStr,
-			end: info.endStr,
-			user: Auth.getUser(),
-		})
-
+	// FullCalendar callback for when user selects dates
+	const addReservation = async () => {
 		try {
 			const { reservation } = await loadingRes({
 				variables: {
@@ -55,17 +49,18 @@ const Calendar = () => {
 
 	const openDialog = () => {
 		return Auth.loggedIn() ? (
-			<>
+			<div id="dialogBox">
 				<DialogTitle>Confirm Dates: </DialogTitle>
 				<p>{`Start: ${selectInfo.start} End: ${selectInfo.end}`}</p>
+				<p>End date is morning of checkout.</p>
 				<Button onClick={() => addReservation(selectInfo)}>Confirm</Button>
 				<Button onClick={() => setOpen(false)}>Change</Button>
-			</>
+			</div>
 		) : (
-			<>
+			<div id="dialogBox">
 				<DialogTitle>Please log in to request a reservation.</DialogTitle>
 				<Button onClick={() => setOpen(false)}>Okay</Button>
-			</>
+			</div>
 		)
 	}
 
@@ -85,7 +80,14 @@ const Calendar = () => {
 				droppable={true}
 				events={eventArr}
 				displayEventTime={false}
-				select={(info) => addReservation(info)}
+				select={(info) => {
+					setOpen(true)
+					setSelectInfo({
+						start: info.startStr,
+						end: info.endStr,
+						user: Auth.getUser(),
+					})
+				}}
 				//   events - query all events to display ie
 				//   events={[
 				//     { title: "event 1", date: "2022-11-01" },
@@ -94,7 +96,7 @@ const Calendar = () => {
 				//   alert modal or form toggled with functionality based on user
 				// if no account, message or alert  - create an account first
 			/>
-			<Dialog open={open} onClose={closeDialog}>
+			<Dialog id="calendarModal" open={open} onClose={closeDialog}>
 				{openDialog()}
 			</Dialog>
 		</>

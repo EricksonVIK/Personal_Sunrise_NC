@@ -146,6 +146,27 @@ legend {
 	margin-bottom: 10px;
 }
 
+/* Calendar modal */
+
+#dialogBox  {
+ min-width: 25vw;
+ text-align: center;
+ min-height: 25vh;
+}
+
+#dialogBox h2 {
+	padding-bottom: 45px;
+}
+
+#dialogBox p {
+	padding: 10px 10px
+}
+
+#dialogBox button {
+	border: 1px solid gray;
+	margin: 5px 5px;
+}
+
 footer {
 	background-color: #1976d2;
 	display: flex;
