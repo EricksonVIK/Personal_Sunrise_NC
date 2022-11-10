@@ -4,7 +4,7 @@
 
 ## Description
 
-Beach rental MVP for Personal Sunrise a coastal home in North Carolina. Created with REACT, MongoDB, FullCalendar, Apollo Server, React Router, and JWT (Jason Web Tokens). Deployed with Heroku (link below)
+Beach rental MVP for Personal Sunrise a coastal home in North Carolina. Created with REACT, MongoDB, GraphQL, FullCalendar, Apollo Server, React Router, and JWT (Jason Web Tokens). Deployed with Heroku (link below)
 
 ## Table of contents
 
