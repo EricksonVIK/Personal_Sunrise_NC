@@ -8,6 +8,7 @@ import {
 	Schedule,
 	Login,
 	Home,
+	ContactForm,
 	SignUp,
 } from './components/routes/index'
 
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/schedule" element={<Schedule />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<SignUp />} />
+				<Route path="/contact" element={<ContactForm />} />
 			</Routes>
 			<Footer />
 		</Router>
@@ -28,4 +30,3 @@ function App() {
 }
 
 export default App
-// Footer
