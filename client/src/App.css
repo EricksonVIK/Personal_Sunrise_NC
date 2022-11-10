@@ -10,11 +10,11 @@
 
 /* pushes page content below header and above footer */
 
-#root:nth-child(2) {
+#root>div, footer {
 margin-top: 64px
 }
 
-#root section:last-of-type {
+#root>div:last-of-type {
 	margin-bottom: 64px;
 }
 
@@ -29,6 +29,28 @@ margin-top: 64px
   grid-template-areas:
     "photoGallery reviews"
     "description reviews";
+}
+
+/* Home page mobile view */
+
+@media screen and (max-width: 1024px){
+	#homePage {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas: 
+		"photoGallery"
+		"description"
+		"reviews";
+	}
+	header {
+		padding: 0 !important;
+	}
+	header h1 {
+		font-size: 1rem !important;
+	}
+	header a {
+		font-size: .7rem !important;
+	}
 }
 
 #photoGallery { grid-area: photoGallery; }
@@ -102,6 +124,35 @@ margin-top: 64px
 	background-color: gray;
 }
 
+/* Photo gallery mobile view */
+
+@media screen and (max-width: 640px) {
+	.slideshow {
+		max-height: 400px;
+		max-width: 400px;
+	}
+	.slider img {
+		height: 400px;
+	}
+
+	.slideshowDots {
+		max-width: 250px;
+		align-items: center;
+		left: 30%;
+		height: 40px;
+	}
+
+	.slideshowDot {
+		margin: 4px;
+	}
+}
+
+/* Limit calendar height so it doesn't flow into footer */
+
+.fc {
+	max-height: calc(100vh - 128px);
+}
+
 /* Form on login and signup page */
 
 #loginForm, #signupForm {
@@ -125,26 +176,41 @@ legend {
 	padding-bottom: 30px;
 }
 
-#loginForm label, #signupForm label {
+#loginForm label, #signupForm label, #contactForm label {
 	font-size: 2em;
 	font-weight: 900;
 	display: block;
 }
 
-#loginEmail div, #loginPassword div, #signupEmail div, #signupPassword div, #signupPasswordConfirm div, #signupUsername div {
+#loginEmail div, #loginPassword div, #signupEmail div, #signupPassword div, #signupPasswordConfirm div, #contactForm, #signupUsername div, #contactName div, #contactEmail div, #contactMessage div {
 	width: 80%;
 	margin: 10px auto;
 }
 
-#loginEmail div input, #loginPassword div input {
+#loginEmail div input, #loginPassword div input, #contactName div, #contactEmail input {
 	text-align: center;
 }
 
-#loginSubmit button, #signupSubmit button {
+#loginSubmit button, #signupSubmit button, #contactForm button {
 	width: 50%;
 	height: 5vh;
 	margin-bottom: 10px;
 }
+
+/* mobile form on login and signup page */
+
+@media screen and (max-width: 1024px) {
+	#loginForm, #signupForm {
+		max-width: 100vw;
+		margin: 64px 0;
+		border: none;
+	}
+
+	legend, #loginForm label, #signupForm label, #contactForm label  {
+		font-size: 1.5em;
+	}
+}
+
 
 /* Calendar modal */
 

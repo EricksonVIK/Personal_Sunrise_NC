@@ -1,96 +1,99 @@
-import React from "react";
-import { useState } from "react";
-import { validateEmail } from "../../utlis/helpers";
+import React from 'react'
+import { useState } from 'react'
+import { validateEmail } from '../../utlis/helpers'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 
 function ContactForm() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const { name, email, message } = formState;
-  const [errorMessage, setErrorMessage] = useState("");
+	const [formState, setFormState] = useState({
+		name: '',
+		email: '',
+		message: '',
+	})
+	const { name, email, message } = formState
+	const [errorMessage, setErrorMessage] = useState('')
 
-  // sync formState with user input
-  function handleChange(e) {
-    if (e.target.name === "email") {
-      const isValid = validateEmail(e.target.value);
-      // isValid conditional statement
-      if (!isValid) {
-        setErrorMessage("Your email is invalid.");
-      } else {
-        setErrorMessage("");
-      }
-    } else {
-      if (!e.target.value.length) {
-        setErrorMessage(`Forgot to enter your ${e.target.name}.`);
-      } else {
-        setErrorMessage("");
-      }
-    }
-    if (!errorMessage) {
-      setFormState({ ...formState, [e.target.name]: e.target.value });
-    }
-  }
+	// sync formState with user input
+	function handleChange(e) {
+		if (e.target.name === 'email') {
+			const isValid = validateEmail(e.target.value)
+			// isValid conditional statement
+			if (!isValid) {
+				setErrorMessage('Your email is invalid.')
+			} else {
+				setErrorMessage('')
+			}
+		} else {
+			if (!e.target.value.length) {
+				setErrorMessage(`Forgot to enter your ${e.target.name}.`)
+			} else {
+				setErrorMessage('')
+			}
+		}
+		if (!errorMessage) {
+			setFormState({ ...formState, [e.target.name]: e.target.value })
+		}
+	}
 
-  // form submission
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(formState);
-  }
+	// form submission
+	function handleSubmit(e) {
+		e.preventDefault()
+		console.log(formState)
+	}
 
-  // render jsx
-  return (
-    <section>
-      <h1 data-testid="h1tag">Questions?</h1>
-      <form id="contact-form" onSubmit={handleSubmit}>
-        {/* name input */}
-        <div>
-          <label htmlFor="name">Name:</label>
-        </div>
-        <div>
-          <input
-            type="text"
-            defaultValue={name}
-            onBlur={handleChange}
-            name="name"
-          />
-        </div>
-        {/* email input */}
-        <div>
-          <label htmlFor="email">Email address:</label>
-        </div>
-        <div>
-          <input
-            type="email"
-            defaultValue={email}
-            onBlur={handleChange}
-            name="email"
-          />
-        </div>
-        {/* message text area */}
-        <div>
-          <label htmlFor="message">Message:</label>
-        </div>
-        <div>
-          <textarea
-            name="message"
-            defaultValue={message}
-            onBlur={handleChange}
-            rows="5"
-          />
-        </div>
-        {errorMessage && (
-          <div>
-            <p className="error-text">{errorMessage}</p>
-          </div>
-        )}
-        <button data-testid="button" type="submit">
-          Submit
-        </button>
-      </form>
-    </section>
-  );
+	// render jsx
+	return (
+		<div>
+			<form id="contactForm" onSubmit={handleSubmit}>
+				<legend data-testid="h1tag">Questions?</legend>
+				{/* name input */}
+				<div id="contactName">
+					<label htmlFor="name">Name:</label>
+					<TextField
+						type="text"
+						defaultValue={name}
+						onBlur={handleChange}
+						name="name"
+					/>
+				</div>
+				{/* email input */}
+				<div id="contactEmail">
+					<label htmlFor="email">Email address:</label>
+					<TextField
+						type="email"
+						defaultValue={email}
+						onBlur={handleChange}
+						name="email"
+					/>
+				</div>
+				{/* message text area */}
+				<div id="contactMessage">
+					<label htmlFor="message">Message:</label>
+					<TextField
+						multiline
+						name="message"
+						defaultValue={message}
+						onBlur={handleChange}
+						rows="5"
+					/>
+				</div>
+				{errorMessage && (
+					<div>
+						<p className="error-text">{errorMessage}</p>
+					</div>
+				)}
+				<Button
+					variant="contained"
+					color="primary"
+					id="contactButton"
+					data-testid="button"
+					type="submit"
+				>
+					Submit
+				</Button>
+			</form>
+		</div>
+	)
 }
 
-export default ContactForm;
+export default ContactForm
