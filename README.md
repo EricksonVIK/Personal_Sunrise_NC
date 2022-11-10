@@ -12,6 +12,7 @@ Beach rental MVP for Personal Sunrise a coastal home in North Carolina. Created 
 - [Contributors](#contributors)
 - [Deployed Link](#link)
 - [Screentshot](#screenshot)
+- [Future Development](#development)
 - [License](#license)
 
 ## Usage
@@ -28,6 +29,12 @@ https://personal-sunrise-test.herokuapp.com/
 
 ## Screenshot
 ![Alt text](../../../../C:/Bootcamp/projects/Personal_Sunrise_NC/client/src/assets/images/Home_Screenshot.png)
-## License
 
+## Development
+- Calendar sync with iCal
+- Owner account creation refactor
+- Owner Reservation tab/cache
+- Review Upload
+
+## License
 ![badmath](https://img.shields.io/github/license/EricksonVIK/Personal_Sunrise_NC)
