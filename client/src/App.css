@@ -193,3 +193,11 @@ footer p {
 iframe {
 	display: none;
 }
+
+.footerLink{
+	margin: 10px;
+}
+
+.footerIcon{
+	margin: 10px;
+}
