@@ -33,20 +33,15 @@ const logout = () => {
 	Auth.logout()
 }
 
-const loggedInHeaders = [
-	{
-		label: 'Home',
-		href: '/',
-	},
-	{
-		label: 'Calendar',
-		href: '/calendar',
-	},
-	{
-		label: 'Contact',
-		href: '/contact',
-	},
-]
+const ownerLink = () => {
+	if (Auth.isOwner() === 'owner') {
+		return (
+			<Button href="/owner-calendar" color="inherit">
+				Owner Calendar
+			</Button>
+		)
+	}
+}
 
 const loggedOutHeaders = [
 	{
@@ -113,6 +108,7 @@ export default function Header() {
 				<Button href="/calendar" color="inherit">
 					Calendar
 				</Button>
+				{ownerLink()}
 				<Button href="/contact" color="inherit">
 					Contact
 				</Button>

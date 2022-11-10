@@ -17,6 +17,8 @@ const typeDefs = gql`
 		start: String
 		end: String
 		title: String
+		username: String
+		email: String
 		createdAt: String
 	}
 	type Reservation {
@@ -24,6 +26,7 @@ const typeDefs = gql`
 		start: String
 		end: String
 		username: String
+		email: String
 		createdAt: String
 	}
 	type Auth {
@@ -43,9 +46,12 @@ const typeDefs = gql`
 		login(email: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
 		addEvent(
+			loginType: String!
 			start: String!
 			end: String!
 			title: String!
+			username: String!
+			email: String!
 			createdAt: String
 		): Event
 		addReservation(
@@ -56,6 +62,7 @@ const typeDefs = gql`
 		): User
 		deleteEvent(title: String!): Event
 		updateEvent(title: String!): Event
+		deleteReservation(email: String!): Reservation
 	}
 `
 

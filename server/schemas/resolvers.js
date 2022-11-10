@@ -57,7 +57,7 @@ const resolvers = {
 		},
 		// add event
 		addEvent: async (parent, args) => {
-			return Event.create(args)
+			return Event.create(args), Reservation.deleteOne({ email: args.email })
 		},
 		// delete event-  Should we add authentication
 		deleteEvent: async (parent, { title }) => {
