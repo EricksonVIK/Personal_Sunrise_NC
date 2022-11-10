@@ -7,45 +7,22 @@ import {
 	Calendar,
 	Schedule,
 	Login,
-	Home, ContactForm,
+	Home,
+	ContactForm,
+	SignUp,
 } from './components/routes/index'
-import {
-	ApolloProvider,
-	ApolloClient,
-	InMemoryCache,
-	createHttpLink,
-} from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
-
-const authLink = setContext((_, { headers }) => {
-	const token = localStorage.getItem('id_token')
-	return {
-		headers: {
-			...headers,
-			authorization: token ? `Bearer ${token}` : '',
-		},
-	}
-})
-
-const httpLink = createHttpLink({
-	uri: 'http://localhost:3001/graphql',
-})
-
-const client = new ApolloClient({
-	link: authLink.concat(httpLink),
-	cache: new InMemoryCache(),
-})
 
 function App() {
 	return (
 		<Router>
 			<Header></Header>
 			<Routes>
-				<Route path="/calendar" element={<Calendar />}></Route>
-				<Route path="/schedule" element={<Schedule />}></Route>
-				<Route path="/login" element={<Login />}></Route>
-				<Route path="/" element={<Home />}></Route>
-				<Route path="/contact" element={<ContactForm />}></Route>
+				<Route path="/" element={<Home />} />
+				<Route path="/calendar" element={<Calendar />} />
+				<Route path="/schedule" element={<Schedule />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<SignUp />} />
+				<Route path="/contact" element={<ContactForm />} />
 			</Routes>
 			<Footer />
 		</Router>
@@ -53,4 +30,3 @@ function App() {
 }
 
 export default App
-// Footer
