@@ -233,6 +233,21 @@ legend {
 	margin: 5px 5px;
 }
 
+header{
+	background-color: #1976d2;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 18px;
+}
+
+
 footer {
 	background-color: #1976d2;
 	display: flex;
