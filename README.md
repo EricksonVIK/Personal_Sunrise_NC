@@ -28,7 +28,7 @@ Users is welcomed to the home page(slideshow, reviews, and description). User ca
 https://personal-sunrise-test.herokuapp.com/
 
 ## Screenshot
-![](../../../../C:/Bootcamp/projects/Personal_Sunrise_NC/client/src/assets/images/Home_Screenshot.png)
+![Alt text](../../../../C:/Bootcamp/projects/Personal_Sunrise_NC/client/src/assets/images/Home_Screenshot.png)
 
 ## Development
 - Calendar sync with iCal
