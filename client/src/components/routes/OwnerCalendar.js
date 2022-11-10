@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useMutation, useQuery } from '@apollo/client'
 import {
+	ADD_EVENT,
 	ADD_RESERVATION,
 	QUERY_EVENTS,
 	QUERY_RESERVATIONS,
@@ -12,63 +13,47 @@ import Auth from '../../utlis/auth'
 import { Button, Dialog, DialogTitle } from '@mui/material'
 
 const OwnerCalendar = () => {
-	const [selectInfo, setSelectInfo] = useState({ start: '', end: '', user: '' })
+	const [selectInfo, setSelectInfo] = useState({
+		start: '',
+		end: '',
+		username: '',
+		email: '',
+	})
 	const [open, setOpen] = useState(false)
-	const { loading, data } = useQuery(QUERY_EVENTS)
-	const { getReservations, resData } = useQuery(QUERY_RESERVATIONS)
-	const [loadingRes, { reservation }] = useMutation(ADD_RESERVATION)
+	const { loading, data } = useQuery(QUERY_RESERVATIONS)
+	const [loadingRes, { savedEvent }] = useMutation(ADD_EVENT)
 	const eventArr = []
-	const events = data?.events || []
-	const reservations = resData?.requests || []
-
-	/* 
-	
-	Something wrong here but not sure why.  Gets the events AND the reservations 
-	but it won't push the reservations to the eventArr.  Network request shows data from graphql but
-	it won't console.log that data either.
-	
-	
-	
-	*/
+	const events = data ? [...data.events, ...data.requests] : []
 
 	// Need this format for calendar.  end has to have that added to push it into the "last" day
-	const getEvents = async () => {
-		/* await events.map((data, index) => {
-			console.log('events: ', data)
-			eventArr.push({
-				id: data._id,
-				title: data.title,
-				start: new Date(parseInt(data.start)),
-				end: new Date(parseInt(data.end) + 90000000),
-				allDay: true,
-			})
-		}) */
-		await reservations.map((data, index) => {
-			eventArr.push({
-				id: data._id,
-				title: data.username,
-				email: data.email,
-				start: new Date(parseInt(data.start)),
-				end: new Date(parseInt(data.end) + 90000000),
-			})
-		})
-	}
 
-	getEvents()
+	console.log('events: ', eventArr)
+	events.map((data, index) => {
+		eventArr.push({
+			id: data._id,
+			title: data.title ? data.title : 'Reserved',
+			email: data.email,
+			username: data.username,
+			start: new Date(parseInt(data.start)),
+			end: new Date(parseInt(data.end)),
+			allDay: true,
+		})
+	})
 
 	// FullCalendar callback for when user selects dates
-	const addReservation = async () => {
+	const addEvents = async () => {
 		try {
-			const { reservation } = await loadingRes({
+			const { event } = await loadingRes({
 				variables: {
-					username: Auth.getUser().data.username,
-					_id: Auth.getUser().data._id,
-					email: Auth.getUser().data.email,
+					username: selectInfo.username,
+					email: selectInfo.email,
 					start: selectInfo.start,
 					end: selectInfo.end,
+					title: 'Reserved Event',
+					loginType: Auth.isOwner(),
 				},
 			})
-			console.log(reservation)
+			console.log(event)
 		} catch (err) {
 			console.error(err)
 		}
@@ -79,15 +64,15 @@ const OwnerCalendar = () => {
 	const openDialog = () => {
 		return Auth.loggedIn() ? (
 			<div id="dialogBox">
-				<DialogTitle>Confirm Dates: </DialogTitle>
+				<DialogTitle>Add reservation to event calendar?</DialogTitle>
 				<p>{`Start: ${selectInfo.start} End: ${selectInfo.end}`}</p>
-				<p>End date is morning of checkout.</p>
-				<Button onClick={() => addReservation(selectInfo)}>Confirm</Button>
+
+				<Button onClick={() => addEvents(selectInfo)}>Confirm</Button>
 				<Button onClick={() => setOpen(false)}>Change</Button>
 			</div>
 		) : (
 			<div id="dialogBox">
-				<DialogTitle>Please log in to request a reservation.</DialogTitle>
+				<DialogTitle>Please log in to re-authorize.</DialogTitle>
 				<Button onClick={() => setOpen(false)}>Okay</Button>
 			</div>
 		)
@@ -97,7 +82,7 @@ const OwnerCalendar = () => {
 		setOpen(false)
 	}
 
-	return getReservations ? (
+	return loading ? (
 		<div>Loading</div>
 	) : (
 		<>
@@ -109,13 +94,16 @@ const OwnerCalendar = () => {
 				droppable={true}
 				events={eventArr}
 				displayEventTime={false}
-				select={(info) => {
-					setOpen(true)
+				eventClick={(info) => {
 					setSelectInfo({
-						start: info.startStr,
-						end: info.endStr,
-						user: Auth.getUser(),
+						username: info.event._def.extendedProps.username,
+						email: info.event._def.extendedProps.email,
+						start: info.event._instance.range.start,
+						end: info.event._instance.range.end,
 					})
+					console.log(Auth.isOwner()) //info.event._def)
+					openDialog()
+					setOpen(true)
 				}}
 			/>
 			<Dialog id="calendarModal" open={open} onClose={closeDialog}>

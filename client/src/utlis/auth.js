@@ -36,8 +36,8 @@ class AuthService {
 	}
 	//check if user is owner for adding events from reservation requests
 	isOwner() {
-		const token = this.getToken()
-		return token.loginType === 'owner'
+		const token = this.getUser()
+		return token.data.loginType
 	}
 }
 

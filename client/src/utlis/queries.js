@@ -14,12 +14,16 @@ export const QUERY_EVENTS = gql`
 // Get all reservation requests
 export const QUERY_RESERVATIONS = gql`
 	query Query2 {
-		requests {
-			email
-			username
+		events {
 			start
 			end
-			_id
+			title
+		}
+		requests {
+			start
+			end
+			username
+			email
 		}
 	}
 `
