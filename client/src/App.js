@@ -10,6 +10,7 @@ import {
 	Home,
 	ContactForm,
 	SignUp,
+	OwnerCalendar,
 } from './components/routes/index'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<SignUp />} />
 				<Route path="/contact" element={<ContactForm />} />
+				<Route path="/owner-calendar" element={<OwnerCalendar />} />
 			</Routes>
 			<Footer />
 		</Router>

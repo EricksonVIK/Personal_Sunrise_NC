@@ -34,6 +34,11 @@ class AuthService {
 		localStorage.removeItem('id_token')
 		window.location.assign('/')
 	}
+	//check if user is owner for adding events from reservation requests
+	isOwner() {
+		const token = this.getToken()
+		return token.loginType === 'owner'
+	}
 }
 
 export default new AuthService()
